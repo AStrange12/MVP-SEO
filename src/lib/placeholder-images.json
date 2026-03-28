@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-restaurant",
+      "description": "A cozy neighborhood Italian restaurant interior",
+      "imageUrl": "https://picsum.photos/seed/restaurant/1200/800",
+      "imageHint": "restaurant interior"
+    },
+    {
+      "id": "service-plumbing",
+      "description": "A professional plumber working on a sink",
+      "imageUrl": "https://picsum.photos/seed/plumber/600/400",
+      "imageHint": "plumbing service"
+    },
+    {
+      "id": "service-haircut",
+      "description": "Modern barbershop setting",
+      "imageUrl": "https://picsum.photos/seed/barber/600/400",
+      "imageHint": "barbershop"
+    },
+    {
+      "id": "hero-generic-business",
+      "description": "Professional modern office building",
+      "imageUrl": "https://picsum.photos/seed/office/1200/800",
+      "imageHint": "modern office"
+    }
+  ]
 }
