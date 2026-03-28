@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -52,7 +51,7 @@ export default function Home() {
           >
             Launch Your Presence <br />
             <span className="gradient-text">At Light Speed.</span>
-          </h1 >
+          </motion.h1>
           
           <motion.p 
             initial={{ y: 20, opacity: 0 }}
