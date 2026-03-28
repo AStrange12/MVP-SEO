@@ -61,11 +61,11 @@ export default function MapContainer({ businesses, userLocation, selectedId, onS
       center={userLocation}
       zoom={5}
       zoomControl={false}
-      style={{ height: "100%", width: "100%", background: "#0a0a0a" }}
+      style={{ height: "100%", width: "100%", background: "#f8f9fa" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
       />
       
       <ZoomControl position="bottomright" />
@@ -86,15 +86,15 @@ export default function MapContainer({ businesses, userLocation, selectedId, onS
             <Popup className="custom-popup">
               <div className="p-2 space-y-2 min-w-[200px]">
                 <div className="flex justify-between items-start">
-                  <h4 className="font-bold text-lg text-white">{biz.name}</h4>
-                  <div className="flex items-center text-amber-400">
+                  <h4 className="font-bold text-lg text-neutral-900">{biz.name}</h4>
+                  <div className="flex items-center text-amber-500">
                     <Star className="w-3 h-3 fill-current" />
                     <span className="text-xs ml-1">{biz.rating}</span>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground line-clamp-2">{biz.description}</p>
+                <p className="text-xs text-neutral-600 line-clamp-2">{biz.description}</p>
                 <div className="pt-2">
-                  <Button size="sm" className="w-full rounded-lg h-8 text-xs bg-primary" asChild>
+                  <Button size="sm" className="w-full rounded-lg h-8 text-xs bg-primary hover:bg-primary/90 text-white" asChild>
                     <a href={`/businesses`} className="flex items-center gap-2">
                       View Success Story <ExternalLink className="w-3 h-3" />
                     </a>
