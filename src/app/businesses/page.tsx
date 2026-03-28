@@ -21,6 +21,9 @@ export interface Business {
   name: string;
   category: string;
   location: string;
+  city?: string;
+  lat?: number;
+  lng?: number;
   description: string;
   seoScore: number;
   growth: string;
@@ -33,12 +36,15 @@ export interface Business {
   socialLinks?: SocialLinks;
 }
 
-const MOCK_SUCCESS_STORIES: Business[] = [
+export const MOCK_SUCCESS_STORIES: Business[] = [
   {
     id: "m1",
     name: "Quantum Coffee Labs",
     category: "Cafe",
-    location: "San Francisco, CA",
+    location: "Bangalore, India",
+    city: "Bangalore",
+    lat: 12.9716,
+    lng: 77.5946,
     description: "Brewing the future with precision-engineered beans and futuristic roasting techniques. We specialize in high-end caffeine experiences for the modern tech enthusiast.",
     seoScore: 94,
     growth: "140% traffic boost",
@@ -57,7 +63,10 @@ const MOCK_SUCCESS_STORIES: Business[] = [
     id: "m2",
     name: "Blue Door Bakery",
     category: "Food",
-    location: "Austin, TX",
+    location: "Mumbai, India",
+    city: "Mumbai",
+    lat: 19.0760,
+    lng: 72.8777,
     description: "Artisanal breads and pastries handcrafted with local organic ingredients. A traditional approach to baking enhanced by digital marketing excellence.",
     seoScore: 88,
     growth: "2x customer reach",
@@ -76,7 +85,10 @@ const MOCK_SUCCESS_STORIES: Business[] = [
     id: "m3",
     name: "Summit Tech Repair",
     category: "Electronics",
-    location: "Seattle, WA",
+    location: "New Delhi, India",
+    city: "Delhi",
+    lat: 28.6139,
+    lng: 77.2090,
     description: "Expert repair services for all your high-end devices and smart home systems. Precision diagnostics and rapid turnarounds.",
     seoScore: 91,
     growth: "85% more leads",
@@ -95,7 +107,10 @@ const MOCK_SUCCESS_STORIES: Business[] = [
     id: "m4",
     name: "Lush Garden Design",
     category: "Landscaping",
-    location: "Miami, FL",
+    location: "Pune, India",
+    city: "Pune",
+    lat: 18.5204,
+    lng: 73.8567,
     description: "Transforming urban spaces into tropical paradises with sustainable design and smart irrigation systems.",
     seoScore: 86,
     growth: "50% more bookings",
@@ -113,7 +128,10 @@ const MOCK_SUCCESS_STORIES: Business[] = [
     id: "m5",
     name: "Apex Fitness Studio",
     category: "Fitness",
-    location: "Chicago, IL",
+    location: "Hyderabad, India",
+    city: "Hyderabad",
+    lat: 17.3850,
+    lng: 78.4867,
     description: "High-intensity training and recovery sessions for peak human performance. Scientific coaching meets premium facilities.",
     seoScore: 92,
     growth: "3x memberships",

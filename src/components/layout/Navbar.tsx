@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button";
-import { Sparkles, User, LogOut, LayoutDashboard, Home, Zap, Globe } from "lucide-react";
+import { Sparkles, User, LogOut, LayoutDashboard, Home, Zap, Globe, Map } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import {
   DropdownMenu,
@@ -40,7 +40,7 @@ export default function Navbar() {
         </span>
       </Link>
 
-      <nav className="hidden md:flex items-center gap-10 text-sm font-bold uppercase tracking-widest">
+      <nav className="hidden lg:flex items-center gap-10 text-sm font-bold uppercase tracking-widest">
         <Link href="/" className={`${pathname === '/' ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-all duration-300 relative group`}>
           Home
           <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${pathname === '/' ? 'scale-x-100' : ''}`} />
@@ -48,6 +48,11 @@ export default function Navbar() {
         <Link href="/businesses" className={`${pathname === '/businesses' ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-all duration-300 relative group`}>
           Showcase
           <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${pathname === '/businesses' ? 'scale-x-100' : ''}`} />
+        </Link>
+        <Link href="/explore" className={`${pathname === '/explore' ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-all duration-300 relative group flex items-center gap-2`}>
+          <Map className="w-4 h-4" />
+          Explore Nearby
+          <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${pathname === '/explore' ? 'scale-x-100' : ''}`} />
         </Link>
         <Link href="/dashboard" className={`${pathname === '/dashboard' ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-all duration-300 relative group`}>
           Dashboard

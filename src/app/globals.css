@@ -88,3 +88,20 @@
   z-index: 9999;
   transition: width 0.3s ease, height 0.3s ease;
 }
+
+/* Leaflet Dark Theme Overrides */
+.leaflet-container {
+  border-radius: 1.5rem;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(20, 20, 20, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+  border-radius: 1rem !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(20, 20, 20, 0.9) !important;
+}
