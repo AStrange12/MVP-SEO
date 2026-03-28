@@ -5,25 +5,11 @@ import { ArrowRight, Rocket, Zap, Globe, Sparkles } from "lucide-react";
 export default function Home() {
   return (
     <div className="min-h-screen hero-gradient flex flex-col">
-      <header className="px-6 py-4 flex items-center justify-between border-b border-white/5 glass-morphism sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          <div className="bg-primary p-2 rounded-lg">
-            <Sparkles className="text-white w-5 h-5" />
-          </div>
-          <span className="font-headline font-bold text-xl tracking-tighter">LocalBoost <span className="text-primary">AI</span></span>
-        </div>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-          <Link href="#features" className="hover:text-primary transition-colors">Features</Link>
-          <Link href="#pricing" className="hover:text-primary transition-colors">Pricing</Link>
-          <Link href="/dashboard" className="bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 hover:bg-primary/20 transition-all">Launch Dashboard</Link>
-        </nav>
-      </header>
-
       <main className="flex-1">
         <section className="px-6 pt-24 pb-20 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 animate-pulse">
             <Sparkles className="w-3 h-3" />
-            POWERED BY GEMINI 2.5
+            POWERED BY AI
           </div>
           <h1 className="text-5xl md:text-7xl font-headline font-bold mb-6 leading-tight">
             Launch Your Local Business <span className="gradient-text">Instantly.</span>
@@ -34,11 +20,11 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="rounded-full h-14 px-8 text-lg font-headline group" asChild>
               <Link href="/dashboard">
-                Get Started Free <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                Go to Dashboard <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-full h-14 px-8 text-lg font-headline">
-              View Sample Page
+            <Button variant="outline" size="lg" className="rounded-full h-14 px-8 text-lg font-headline" asChild>
+              <Link href="/signup">Join Now</Link>
             </Button>
           </div>
         </section>
