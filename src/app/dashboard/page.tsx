@@ -46,6 +46,26 @@ export default function DashboardPage() {
     }
   }, [isAuthenticated, router]);
 
+  const saveToShowcase = (detailsResult: GenerateBusinessDetailsOutput) => {
+    const newBusiness = {
+      id: Date.now().toString(),
+      name: businessName,
+      category: category,
+      location: location,
+      description: detailsResult.description,
+      seoScore: Math.floor(Math.random() * 15) + 80, // Mock SEO score
+      growth: "Optimizing...",
+      review: "Just launched with LocalBoost AI! Excited for the growth.",
+      rating: 5,
+      tagline: detailsResult.tagline,
+      services: detailsResult.servicesList
+    };
+
+    const existingStr = localStorage.getItem("localboost_showcase_businesses");
+    const existing = existingStr ? JSON.parse(existingStr) : [];
+    localStorage.setItem("localboost_showcase_businesses", JSON.stringify([newBusiness, ...existing]));
+  };
+
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!businessName || !category || !location) return;
@@ -87,10 +107,13 @@ export default function DashboardPage() {
         setAnalysis(null);
       }
 
+      // Automatically save to the showcase page logic
+      saveToShowcase(detailsResult);
+
       setStep("dashboard");
       toast({
         title: "Magic Complete",
-        description: "Your business ecosystem has been generated.",
+        description: "Your business ecosystem has been generated and added to our showcase.",
       });
     } catch (error) {
       console.error(error);

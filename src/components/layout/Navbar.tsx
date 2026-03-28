@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button";
-import { Sparkles, User, LogOut, LayoutDashboard, Home, Zap } from "lucide-react";
+import { Sparkles, User, LogOut, LayoutDashboard, Home, Zap, Globe } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import {
   DropdownMenu,
@@ -44,6 +44,10 @@ export default function Navbar() {
         <Link href="/" className={`${pathname === '/' ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-all duration-300 relative group`}>
           Home
           <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${pathname === '/' ? 'scale-x-100' : ''}`} />
+        </Link>
+        <Link href="/businesses" className={`${pathname === '/businesses' ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-all duration-300 relative group`}>
+          Showcase
+          <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${pathname === '/businesses' ? 'scale-x-100' : ''}`} />
         </Link>
         <Link href="/dashboard" className={`${pathname === '/dashboard' ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-all duration-300 relative group`}>
           Dashboard
