@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Sparkles, Layout, Share2, Globe, CheckCircle2, Loader2, MapPin, Briefcase, Plus, Search, ExternalLink, ShieldAlert, ArrowRight, MousePointer2 } from "lucide-react";
+import { Sparkles, Layout, Share2, Globe, CheckCircle2, Loader2, MapPin, Briefcase, Plus, Search, ExternalLink, ShieldAlert, ArrowRight, MousePointer2, Link as LinkIcon, Instagram, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -21,6 +21,7 @@ import MarketingTools from "@/components/dashboard/MarketingTools";
 import ResultsDisplay from "@/components/dashboard/ResultsDisplay";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
+import { type Business, type SocialLinks } from "@/app/businesses/page";
 
 export default function DashboardPage() {
   const { toast } = useToast();
@@ -34,6 +35,12 @@ export default function DashboardPage() {
   const [location, setLocation] = useState("");
   const [hasWebsite, setHasWebsite] = useState(false);
   const [websiteUrl, setWebsiteUrl] = useState("");
+  
+  // Presence Fields
+  const [customImageUrl, setCustomImageUrl] = useState("");
+  const [customWebsiteUrl, setCustomWebsiteUrl] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [twitter, setTwitter] = useState("");
 
   const [details, setDetails] = useState<GenerateBusinessDetailsOutput | null>(null);
   const [marketing, setMarketing] = useState<GenerateMarketingContentOutput | null>(null);
@@ -47,7 +54,7 @@ export default function DashboardPage() {
   }, [isAuthenticated, router]);
 
   const saveToShowcase = (detailsResult: GenerateBusinessDetailsOutput) => {
-    const newBusiness = {
+    const newBusiness: Business = {
       id: Date.now().toString(),
       name: businessName,
       category: category,
@@ -58,7 +65,13 @@ export default function DashboardPage() {
       review: "Just launched with LocalBoost AI! Excited for the growth.",
       rating: 5,
       tagline: detailsResult.tagline,
-      services: detailsResult.servicesList
+      services: detailsResult.servicesList,
+      imageUrl: customImageUrl || `https://picsum.photos/seed/${businessName.replace(/\s+/g, '')}/800/600`,
+      websiteUrl: hasWebsite ? websiteUrl : customWebsiteUrl,
+      socialLinks: {
+        instagram: instagram || undefined,
+        twitter: twitter || undefined
+      }
     };
 
     const existingStr = localStorage.getItem("localboost_showcase_businesses");
@@ -160,6 +173,7 @@ export default function DashboardPage() {
                     onChange={(e) => setBusinessName(e.target.value)}
                     className="h-14 bg-white/5 border-white/10 text-lg rounded-xl focus:ring-primary focus:border-primary transition-all"
                     required
+                    suppressHydrationWarning
                   />
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
@@ -173,6 +187,7 @@ export default function DashboardPage() {
                       onChange={(e) => setCategory(e.target.value)}
                       className="h-14 bg-white/5 border-white/10 text-lg rounded-xl"
                       required
+                      suppressHydrationWarning
                     />
                   </div>
                   <div className="space-y-3">
@@ -185,6 +200,7 @@ export default function DashboardPage() {
                       onChange={(e) => setLocation(e.target.value)}
                       className="h-14 bg-white/5 border-white/10 text-lg rounded-xl"
                       required
+                      suppressHydrationWarning
                     />
                   </div>
                 </div>
@@ -217,10 +233,72 @@ export default function DashboardPage() {
                           className="pl-12 h-14 bg-white/5 border-white/10 rounded-xl"
                           required={hasWebsite}
                           type="url"
+                          suppressHydrationWarning
                         />
                       </div>
                     </motion.div>
                   )}
+                </div>
+
+                {/* New Presence Fields (Optional) */}
+                <div className="space-y-4 p-6 rounded-2xl bg-white/5 border border-white/10">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                    <Globe className="w-4 h-4" /> Online Presence (Optional)
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-muted-foreground flex items-center gap-2">
+                        <LinkIcon className="w-3 h-3" /> Image URL
+                      </label>
+                      <Input 
+                        placeholder="https://...thumbnail.jpg" 
+                        value={customImageUrl} 
+                        onChange={(e) => setCustomImageUrl(e.target.value)}
+                        className="bg-background/50 border-white/10 h-10"
+                        suppressHydrationWarning
+                      />
+                    </div>
+                    {!hasWebsite && (
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-muted-foreground flex items-center gap-2">
+                          <ExternalLink className="w-3 h-3" /> Website Link
+                        </label>
+                        <Input 
+                          placeholder="https://yoursite.com" 
+                          value={customWebsiteUrl} 
+                          onChange={(e) => setCustomWebsiteUrl(e.target.value)}
+                          className="bg-background/50 border-white/10 h-10"
+                          suppressHydrationWarning
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-muted-foreground flex items-center gap-2">
+                        <Instagram className="w-3 h-3" /> Instagram
+                      </label>
+                      <Input 
+                        placeholder="@username" 
+                        value={instagram} 
+                        onChange={(e) => setInstagram(e.target.value)}
+                        className="bg-background/50 border-white/10 h-10"
+                        suppressHydrationWarning
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-muted-foreground flex items-center gap-2">
+                        <Twitter className="w-3 h-3" /> Twitter/X
+                      </label>
+                      <Input 
+                        placeholder="@username" 
+                        value={twitter} 
+                        onChange={(e) => setTwitter(e.target.value)}
+                        className="bg-background/50 border-white/10 h-10"
+                        suppressHydrationWarning
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <Button 
