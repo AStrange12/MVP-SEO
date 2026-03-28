@@ -1,8 +1,18 @@
+
+"use client";
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { type GenerateLandingPageContentOutput } from "@/ai/flows/generate-landing-page-content";
 import { Mail, Phone, MapPin, ChevronRight, Star } from "lucide-react";
 
 export default function LandingPagePreview({ content, businessName }: { content: GenerateLandingPageContentOutput, businessName: string }) {
+  const [currentYear, setCurrentYear] = useState<number>(2025);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="rounded-2xl border border-white/5 bg-white text-black overflow-hidden shadow-2xl max-w-5xl mx-auto mb-10">
       {/* Mock Browser Header */}
@@ -152,7 +162,7 @@ export default function LandingPagePreview({ content, businessName }: { content:
         <footer className="py-12 px-8 border-t border-neutral-100 bg-neutral-50">
           <div className="max-w-4xl mx-auto text-center">
             <div className="font-bold text-lg mb-4 text-neutral-900">{businessName}</div>
-            <p className="text-sm text-neutral-400">&copy; {new Date().getFullYear()} {businessName}. All rights reserved.</p>
+            <p className="text-sm text-neutral-400">&copy; {currentYear} {businessName}. All rights reserved.</p>
           </div>
         </footer>
       </div>

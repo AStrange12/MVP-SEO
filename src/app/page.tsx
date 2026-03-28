@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Rocket, Zap, Globe, Sparkles, ChevronRight } from "lucide-react";
@@ -22,6 +24,12 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const [currentYear, setCurrentYear] = useState<number>(2025);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1">
@@ -133,7 +141,7 @@ export default function Home() {
       </main>
 
       <footer className="px-6 py-12 border-t border-white/5 text-center text-sm text-muted-foreground bg-black/20 backdrop-blur-md">
-        <p className="font-light tracking-widest uppercase">&copy; {new Date().getFullYear()} LocalBoost AI. Built for the high-end future.</p>
+        <p className="font-light tracking-widest uppercase">&copy; {currentYear} LocalBoost AI. Built for the high-end future.</p>
       </footer>
     </div>
   );
